@@ -2,7 +2,13 @@ import React, {Suspense} from 'react';
 
 import './App.css';
 
-const LazyComponent =React.lazy(()=> import('./components/LazyComponent'))
+const LazyComponent =React.lazy(()=> {
+	return new Promise(resolve => {
+		setTimeout(() => {
+			resolve(import('./components/LazyComponent'));
+		}, 1000);
+	});
+});
 
 
 function App() {

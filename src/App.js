@@ -1,6 +1,7 @@
 import React, {Suspense} from 'react';
 
 import './App.css';
+import useGetData from './api/useGetData';
 
 const LazyComponent =React.lazy(()=> {
 	return new Promise(resolve => {
@@ -12,11 +13,17 @@ const LazyComponent =React.lazy(()=> {
 
 
 function App() {
+	const data = useGetData('https://rickandmortyapi.com/api/character')
+
+	console.log(data)
 
   return (
     <div >
       <Suspense fallback={<div>Loading...</div>}>
 				<LazyComponent />
+				<div>
+					{data && data.results.map(character => (<p key={character.id}>{character.name}</p>))}
+				</div>
 			</Suspense>
     </div>
   );

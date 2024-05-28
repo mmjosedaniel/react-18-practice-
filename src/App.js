@@ -1,7 +1,9 @@
 import React, {Suspense,useState, useEffect, useTransition, lazy} from 'react';
+import { Routes, Route } from 'react-router-dom';
+
+import useGetData from './api/useGetData';
 
 import './App.css';
-import useGetData from './api/useGetData';
 
 // const LazyComponent = React.lazy(()=> {
 // 	return new Promise(resolve => {
@@ -17,7 +19,7 @@ const AutomaticBatchingTest = lazy(() => import('./components/AutomaticBatchingT
 
 function App() {
 	// eslint-disable-next-line no-unused-vars
-	const [_isPending, startTransition] = useTransition();
+	const [isPending, startTransition] = useTransition();
 	const [data, setData] = useState(null);
 
 
@@ -34,10 +36,12 @@ function App() {
     <div className='app' >
       <Suspense fallback={<div>Loading...</div>}>
 				{/* <LazyComponent /> */}
+			
+				<Routes>
+					<Route path='/' element={!isPending && <CardsContainer data={data} />}/>
+					<Route path='automatic-batching' element={<AutomaticBatchingTest />}/>
+				</Routes>
 
-				<AutomaticBatchingTest />
-
-				{<CardsContainer data={data} />}
 			</Suspense>
     </div>
   );

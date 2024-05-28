@@ -1,0 +1,11 @@
+.container--automatic-batching {
+	margin-bottom: 40px;
+}
+
+button {
+	background-color: #FFDD33;
+	height: 50px;
+	font-size: medium;
+	font-weight: 700;
+	border-radius: 8px;
+}

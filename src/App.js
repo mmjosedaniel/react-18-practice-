@@ -1,4 +1,4 @@
-import React, {Suspense,useState, useEffect, useTransition} from 'react';
+import React, {Suspense,useState, useEffect, useTransition, lazy} from 'react';
 
 import './App.css';
 import useGetData from './api/useGetData';
@@ -11,13 +11,17 @@ import useGetData from './api/useGetData';
 // 	});
 // });
 
-const CardsContainer = React.lazy(() => import('./components/CardsContainer'))
+const CardsContainer = lazy(() => import('./components/CardsContainer'))
+const AutomaticBatchingTest = lazy(() => import('./components/AutomaticBatchingTest'))
 
 
 function App() {
 	// eslint-disable-next-line no-unused-vars
 	const [_isPending, startTransition] = useTransition();
 	const [data, setData] = useState(null);
+
+
+
 	const fetchData = useGetData('https://rickandmortyapi.com/api/character');
 
 	useEffect(() => {
@@ -26,12 +30,13 @@ function App() {
 		});
 	},[fetchData]);
 
-	console.log(data);
-
   return (
     <div className='app' >
       <Suspense fallback={<div>Loading...</div>}>
 				{/* <LazyComponent /> */}
+
+				<AutomaticBatchingTest />
+
 				{<CardsContainer data={data} />}
 			</Suspense>
     </div>

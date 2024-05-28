@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import useGetData from './api/useGetData';
 
 import './App.css';
+import Template from './Template';
 
 // const LazyComponent = React.lazy(()=> {
 // 	return new Promise(resolve => {
@@ -33,17 +34,16 @@ function App() {
 	},[fetchData]);
 
   return (
-    <div className='app' >
-      <Suspense fallback={<div>Loading...</div>}>
-				{/* <LazyComponent /> */}
-			
-				<Routes>
-					<Route path='/' element={!isPending && <CardsContainer data={data} />}/>
-					<Route path='automatic-batching' element={<AutomaticBatchingTest />}/>
-				</Routes>
+    <Suspense fallback={<div>Loading...</div>}>
+			<Template className='app' >
+					{/* <LazyComponent /> */}
 
-			</Suspense>
-    </div>
+					<Routes>
+						<Route path='/' element={!isPending && <CardsContainer data={data} />}/>
+						<Route path='/automatic-batching' element={<AutomaticBatchingTest />}/>
+					</Routes>
+			</Template>
+		</Suspense>
   );
 }
 

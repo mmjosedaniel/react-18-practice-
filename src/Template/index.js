@@ -4,7 +4,7 @@ import './Template.css';
 
 const Template = ({children}) => {
 	return (
-		<div>
+		<div className="container--template">
 			<header>
 				<nav>
 					<Link to="/">Home</Link>

@@ -14,16 +14,15 @@ import Template from './Template';
 // 	});
 // });
 
-const CardsContainer = lazy(() => import('./components/CardsContainer'))
-const AutomaticBatchingTest = lazy(() => import('./components/AutomaticBatchingTest'))
+const CardsContainer = lazy(() => import('./components/CardsContainer'));
+const AutomaticBatchingTest = lazy(() => import('./components/AutomaticBatchingTest'));
+const Character = lazy(() => import('./Pages/Character'));
 
 
 function App() {
 	// eslint-disable-next-line no-unused-vars
 	const [isPending, startTransition] = useTransition();
 	const [data, setData] = useState(null);
-
-
 
 	const fetchData = useGetData('https://rickandmortyapi.com/api/character');
 
@@ -33,14 +32,17 @@ function App() {
 		});
 	},[fetchData]);
 
+
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
-			<Template className='app' >
+			<Template>
 					{/* <LazyComponent /> */}
 
 					<Routes>
 						<Route path='/' element={!isPending && <CardsContainer data={data} />}/>
 						<Route path='/automatic-batching' element={<AutomaticBatchingTest />}/>
+						<Route path='/:characterId' element={<Character data={data} />}/>
 					</Routes>
 			</Template>
 		</Suspense>

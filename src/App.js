@@ -14,7 +14,7 @@ import Template from './Template';
 // 	});
 // });
 
-const CardsContainer = lazy(() => import('./components/CardsContainer'));
+const CharactersPage = lazy(() => import('./Pages/CharactersPage'));
 const AutomaticBatchingTest = lazy(() => import('./components/AutomaticBatchingTest'));
 const Character = lazy(() => import('./Pages/Character'));
 
@@ -40,7 +40,7 @@ function App() {
 					{/* <LazyComponent /> */}
 
 					<Routes>
-						<Route path='/' element={!isPending && <CardsContainer data={data} />}/>
+						<Route path='/' element={!isPending && <CharactersPage data={data} />}/>
 						<Route path='/automatic-batching' element={<AutomaticBatchingTest />}/>
 						<Route path='/:characterId' element={<Character data={data} />}/>
 					</Routes>

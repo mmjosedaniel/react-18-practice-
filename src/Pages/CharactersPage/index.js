@@ -1,6 +1,6 @@
-import Card from '../Card'
+import Card from '../../components/Card'
 
-const CardsContainer = ({data}) => {
+const CharactersPage = ({data}) => {
 	return (
 		<div>
 			{data && data.results.map(character => (<Card key={character.id} character={character}/>))}
@@ -8,4 +8,4 @@ const CardsContainer = ({data}) => {
 	);
 };
 
-export default CardsContainer;
+export default CharactersPage;

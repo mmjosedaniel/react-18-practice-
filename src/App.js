@@ -40,7 +40,10 @@ function App() {
 					{/* <LazyComponent /> */}
 
 					<Routes>
-						<Route path='/' element={!isPending && <CharactersPage data={data} />}/>
+						<Route
+							path='/'
+							element={!isPending && <CharactersPage data={data}/>}
+						/>
 						<Route path='/automatic-batching' element={<AutomaticBatchingTest />}/>
 						<Route path='/:characterId' element={<Character data={data} />}/>
 					</Routes>
